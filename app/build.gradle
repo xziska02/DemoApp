@@ -1,0 +1,100 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        multiDexEnabled true
+        applicationId "com.peter.ziska.demoapp"
+        minSdkVersion 19
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    packagingOptions {
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+    }
+}
+
+dependencies {
+
+    // android architecture components
+    implementation "androidx.lifecycle:lifecycle-extensions:$libVersions.androidArchitecture"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$libVersions.androidArchitecture"
+    // kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$libVersions.kotlin"
+    // kotlin - coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$libVersions.coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$libVersions.coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$libVersions.coroutines"
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+
+    implementation "com.google.dagger:dagger:$libVersions.di"
+    implementation "com.google.dagger:dagger-android-support:$libVersions.di"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    kapt "com.google.dagger:dagger-compiler:$libVersions.di"
+    kapt "com.google.dagger:dagger-android-processor:$libVersions.di"
+
+    // ui
+    implementation "androidx.appcompat:appcompat:$libVersions.appcompat"
+    implementation "com.google.android.material:material:$libVersions.material"
+    implementation "androidx.constraintlayout:constraintlayout:$libVersions.constraint"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$libVersions.swipe"
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    // kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$libVersions.kotlin"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$libVersions.serialization"
+    implementation "androidx.core:core-ktx:$libVersions.coreKtx"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$libVersions.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$libVersions.navigation"
+
+    implementation "com.github.bumptech.glide:glide:$libVersions.glide"
+    implementation "com.github.bumptech.glide:okhttp3-integration:$libVersions.glide"
+    kapt "com.github.bumptech.glide:compiler:$libVersions.glide"
+
+    implementation "com.squareup.retrofit2:retrofit:$libVersions.retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$libVersions.interceptor"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$libVersions.retrofitConverter"
+
+    testImplementation "junit:junit:$libVersions.junit"
+    testImplementation "androidx.test:core:$libVersions.robolectricCore"
+    testImplementation "org.robolectric:robolectric:$libVersions.robolectric"
+    // Mockito framework etc.
+    testImplementation "org.mockito:mockito-core:$libVersions.mockito"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$libVersions.mockitoKotlin"
+    androidTestImplementation "androidx.test:runner:$libVersions.runner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$libVersions.espresso"
+    testImplementation "org.amshove.kluent:kluent:$libVersions.kluent"
+
+    testImplementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$libVersions.kotlin"
+    testImplementation "org.jetbrains.kotlin:kotlin-reflect:$libVersions.kotlin"
+    testImplementation "org.jetbrains.kotlin:kotlin-test:$libVersions.kotlin"
+}
