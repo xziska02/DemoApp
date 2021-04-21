@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
+    id 'kotlinx-serialization'
 }
 
 android {
@@ -18,6 +19,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'NEWS_SERVER_URL', '"https://newsapi.org/v2/"'
+        buildConfigField 'String', 'NEWS_API_KEY', '"52068e53a67c4b8f8cdda9e8d7cebaf0"'
     }
 
     buildTypes {
@@ -72,7 +76,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$libVersions.kotlin"
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$libVersions.serialization"
     implementation "androidx.core:core-ktx:$libVersions.coreKtx"
-
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
     implementation "androidx.navigation:navigation-fragment-ktx:$libVersions.navigation"
     implementation "androidx.navigation:navigation-ui-ktx:$libVersions.navigation"
 
@@ -83,6 +87,11 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$libVersions.retrofit"
     implementation "com.squareup.okhttp3:logging-interceptor:$libVersions.interceptor"
     implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$libVersions.retrofitConverter"
+
+    implementation "androidx.paging:paging-runtime:$libVersions.paging_version"
+
+    // logging
+    api "com.jakewharton.timber:timber:$libVersions.timber"
 
     testImplementation "junit:junit:$libVersions.junit"
     testImplementation "androidx.test:core:$libVersions.robolectricCore"

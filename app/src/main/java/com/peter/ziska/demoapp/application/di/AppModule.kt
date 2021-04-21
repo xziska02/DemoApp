@@ -2,11 +2,11 @@ package com.peter.ziska.demoapp.application.di
 
 import android.app.Application
 import android.content.Context
-import com.peter.ziska.demoapp.flows.view.sample.di.SampleModule
+import com.peter.ziska.demoapp.flows.view.news.di.NewsModule
 import dagger.Binds
 import dagger.Module
 
-@Module(includes = [SampleModule::class])
+@Module(includes = [NewsModule::class, NetworkModule::class, DateModule::class])
 abstract class AppModule {
 
     @Binds
