@@ -3,11 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".flows.view.sample.view.SampleFragment">
+    tools:context=".flows.view.news.view.NewsFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Hello" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_news"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </FrameLayout>
