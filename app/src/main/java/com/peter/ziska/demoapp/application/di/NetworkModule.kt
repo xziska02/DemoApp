@@ -9,6 +9,7 @@ import dagger.Provides
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import javax.inject.Named
@@ -19,7 +20,17 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideClient(): OkHttpClient = OkHttpClient.Builder().build()
+    fun provideClient(): OkHttpClient {
+
+        val builder =
+            OkHttpClient.Builder()
+        if (BuildConfig.DEBUG) {
+            val interceptor = HttpLoggingInterceptor()
+            interceptor.level = HttpLoggingInterceptor.Level.BODY
+            builder.addInterceptor(interceptor)
+        }
+        return builder.build()
+    }
 
     @Provides
     fun providesNonStrictJson() = Json {

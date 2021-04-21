@@ -2,32 +2,30 @@ package com.peter.ziska.demoapp.flows.data.service
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.peter.ziska.demoapp.base.either.Either
 import com.peter.ziska.demoapp.base.either.onLeft
-import com.peter.ziska.demoapp.flows.data.model.ArticleDto
+import com.peter.ziska.demoapp.flows.data.mapper.toArticle
+import com.peter.ziska.demoapp.flows.domain.model.Article
 
 class NewsPagingSource(
     private val newsApi: NewsApi,
     private val query: String,
-    private val onLeft: (Either.Left<RestResult>) -> Unit
-) : PagingSource<Int, ArticleDto>() {
+) : PagingSource<Int, Article>() {
 
-    override fun getRefreshKey(state: PagingState<Int, ArticleDto>): Int =
+    override fun getRefreshKey(state: PagingState<Int, Article>): Int =
         state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         } ?: DEFAULT_PAGE
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ArticleDto> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
         val nextPageNumber = params.key ?: DEFAULT_PAGE
         val response = newsApi.getNews(query, nextPageNumber)
 
         val successResponse = response.onLeft {
-            onLeft(it)
             return LoadResult.Error(IllegalArgumentException(it.l.toString()))
         }
         return LoadResult.Page(
-            data = successResponse,
+            data = successResponse.map { it.toArticle() },
             prevKey = null,
             nextKey = nextPageNumber.plus(1)
         )

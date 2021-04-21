@@ -6,7 +6,7 @@ import com.peter.ziska.demoapp.flows.view.news.di.NewsModule
 import dagger.Binds
 import dagger.Module
 
-@Module(includes = [NewsModule::class, NetworkModule::class, DateModule::class])
+@Module(includes = [NewsModule::class, NetworkModule::class, DateModule::class, RepositoryModule::class])
 abstract class AppModule {
 
     @Binds

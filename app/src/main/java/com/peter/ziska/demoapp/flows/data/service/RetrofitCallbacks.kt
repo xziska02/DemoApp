@@ -12,6 +12,7 @@ class RetrofitCallbacks<T, S>(
     private val onResponse: (S) -> Either<RestResult, T>
 ) : Callback<S> {
     override fun onFailure(call: Call<S>, t: Throwable) {
+        t.printStackTrace()
         continuation.resume(Either.Left(RestResult.Error("Error: $t")))
     }
 
