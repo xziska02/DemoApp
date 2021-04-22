@@ -8,6 +8,22 @@
     <fragment
         android:id="@+id/sampleFragment"
         android:name="com.peter.ziska.demoapp.flows.view.news.view.NewsFragment"
-        android:label="sample_fragment"
-        tools:layout="@layout/news_fragment" />
+        android:label="@string/app_name"
+        tools:layout="@layout/news_fragment">
+        <action
+            android:id="@+id/action_sampleFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetailFragment"
+        android:name="com.peter.ziska.demoapp.flows.view.detail.view.NewsDetailFragment"
+        android:label="@string/app_name">
+        <argument
+            android:name="article"
+            app:argType="string" />
+    </fragment>
 </navigation>
