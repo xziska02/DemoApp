@@ -54,7 +54,7 @@ class NewsFragment : BaseFragment<NewsViewModel>(R.layout.news_fragment),
 
         lifecycleScope.launch {
             newsAdapter.loadStateFlow.collectLatest { loadStates ->
-                swipe_refresh_layout_news.isRefreshing = loadStates.refresh is LoadState.Loading
+                swipe_refresh_layout_news?.isRefreshing = loadStates.refresh is LoadState.Loading
             }
         }
     }

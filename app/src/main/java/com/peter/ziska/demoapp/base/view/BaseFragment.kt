@@ -8,14 +8,15 @@ import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.peter.ziska.demoapp.base.viewmodel.BaseViewModel
 import com.peter.ziska.demoapp.base.viewmodel.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
 
-abstract class BaseFragment<VM : ViewModel>(@LayoutRes val layoutResId: Int) : Fragment() {
+abstract class BaseFragment<VM>(@LayoutRes val layoutResId: Int) :
+    Fragment() where VM : BaseViewModel {
 
     protected abstract val viewModelClass: Class<VM>
 
@@ -45,6 +46,8 @@ abstract class BaseFragment<VM : ViewModel>(@LayoutRes val layoutResId: Int) : F
         super.onViewCreated(view, savedInstanceState)
         onInitializeView()
         onSubscribe()
+
+        _viewModel?.onCreate(arguments)
     }
 
     protected open fun onSubscribe() {}

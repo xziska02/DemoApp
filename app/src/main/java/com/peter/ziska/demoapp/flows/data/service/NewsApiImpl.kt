@@ -12,7 +12,6 @@ import javax.inject.Named
 
 class NewsApiImpl @Inject constructor(
     private val retrofit: Retrofit,
-    @Named("DateFormat") private val dateFormat: SimpleDateFormat,
 ) : NewsApi, ApiHelper() {
 
     private val service by lazy { retrofit.create(NewsService::class.java) }
@@ -25,7 +24,7 @@ class NewsApiImpl @Inject constructor(
     ): Either<RestResult, List<ArticleDto>> = tryRequest {
         withTimeout(timeoutInMillis) {
             suspendCancellableCoroutine { continuation ->
-                service.getNews(query, dateFormat.format(fromDate), page)
+                service.getNews(query, page)
                     .enqueue(RetrofitCallbacks(continuation) {
                         Either.Right(it.articles)
                     })
