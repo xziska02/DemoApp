@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
     id 'kotlinx-serialization'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -21,7 +22,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField 'String', 'NEWS_SERVER_URL', '"https://newsapi.org/v2/"'
-        buildConfigField 'String', 'NEWS_API_KEY', '"52068e53a67c4b8f8cdda9e8d7cebaf0"'
+        buildConfigField 'String', 'NEWS_API_KEY', '"fca4d69d8fe94c4a82d17ae10cee5a0b"'
     }
 
     buildTypes {

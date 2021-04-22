@@ -4,16 +4,19 @@ import android.view.Menu
 import android.view.MenuInflater
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.peter.ziska.demoapp.R
 import com.peter.ziska.demoapp.base.view.BaseFragment
 import com.peter.ziska.demoapp.extension.hideKeyboard
 import com.peter.ziska.demoapp.flows.view.news.adapter.NewsPageAdapter
+import com.peter.ziska.demoapp.flows.view.news.navigation.NewsNavigator
 import com.peter.ziska.demoapp.flows.view.news.presenter.NewsViewModel
 import kotlinx.android.synthetic.main.news_fragment.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
 class NewsFragment : BaseFragment<NewsViewModel>(R.layout.news_fragment),
@@ -26,14 +29,18 @@ class NewsFragment : BaseFragment<NewsViewModel>(R.layout.news_fragment),
 
     lateinit var searchView: SearchView
 
+    @Inject
+    lateinit var newsNavigator: NewsNavigator
+
     override fun onInitializeView() {
         super.onInitializeView()
         setHasOptionsMenu(true)
 
         newsAdapter = NewsPageAdapter(requireContext())
+        newsNavigator.init(findNavController())
 
         newsAdapter.onClick = {
-            //
+            newsNavigator.navigateToNewsDetail(it)
         }
 
         recycler_view_news.apply {
@@ -47,7 +54,7 @@ class NewsFragment : BaseFragment<NewsViewModel>(R.layout.news_fragment),
 
         lifecycleScope.launch {
             newsAdapter.loadStateFlow.collectLatest { loadStates ->
-                swipe_refresh_layout_news.isRefreshing = loadStates.refresh is LoadState.Loading
+                swipe_refresh_layout_news?.isRefreshing = loadStates.refresh is LoadState.Loading
             }
         }
     }

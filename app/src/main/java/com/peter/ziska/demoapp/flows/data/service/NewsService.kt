@@ -11,10 +11,9 @@ interface NewsService {
     @GET("everything")
     fun getNews(
         @Query("q") query: String,
-        @Query("from") dateFrom: String,
         @Query("page") page: Int = 1,
-        @Query("pageSize") pageSize: Int = 20,
-        @Query("sortBy") sortBy: String = "popularity",
+        @Query("pageSize") pageSize: Int = 10,
+        @Query("sortBy") sortBy: String = "publishedAt",
         @Query("apiKey") apiKey: String = BuildConfig.NEWS_API_KEY,
     ): Call<NewsRequestDto>
 }

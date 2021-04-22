@@ -2,8 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.DemoApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/darkGrey</item>
-        <item name="colorPrimaryVariant">@color/darkGrey</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -13,7 +14,8 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="colorSurface">@color/darkGrey</item>
         <item name="colorOnSurface">@color/white</item>
-        <item name="android:colorBackground">@color/black</item>
+
+        <item name="android:colorBackground">@color/darkGrey</item>
         <item name="android:textColorHint">@color/white</item>
 
         <item name="fontFamily">@font/poppins_regular</item>
@@ -26,18 +28,19 @@
 
     <style name="BaseText.Title">
         <item name="android:textColor">@color/white</item>
-        <item name="android:fontFamily">@font/poppins_semibold</item>
-        <item name="android:textSize">@dimen/text_size_18</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">@dimen/text_size_24</item>
     </style>
 
     <style name="BaseText.Content">
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/poppins_regular</item>
-        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
     </style>
 
-    <style name="BaseCardView">
-        <item name="cardCornerRadius">@dimen/card_corner_radius_12</item>
-        <item name="cardElevation">0dp</item>
+    <style name="BaseText.Subtitle">
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:fontFamily">@font/poppins_lightitalic</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
     </style>
 </resources>
