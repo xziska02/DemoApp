@@ -1,6 +1,5 @@
 package com.peter.ziska.demoapp.flows.view.news.view
 
-import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,7 +21,7 @@ class NewsFragment : BaseFragment<NewsViewModel>(R.layout.news_fragment) {
     override fun onInitializeView() {
         super.onInitializeView()
 
-        newsAdapter = NewsPageAdapter()
+        newsAdapter = NewsPageAdapter(requireContext())
 
         newsAdapter.onClick = {
             //
@@ -45,7 +44,7 @@ class NewsFragment : BaseFragment<NewsViewModel>(R.layout.news_fragment) {
 
         lifecycleScope.launch {
             newsAdapter.loadStateFlow.collectLatest { loadStates ->
-                progressBar.isVisible = loadStates.refresh is LoadState.Loading
+                swipe_refresh_layout_news.isRefreshing = loadStates.refresh is LoadState.Loading
             }
         }
     }

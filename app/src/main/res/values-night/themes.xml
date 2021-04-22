@@ -12,5 +12,24 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="colorSurface">@color/black</item>
     </style>
+
+    <style name="BaseText">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="BaseText.Title">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
+    </style>
+
+    <style name="BaseText.Content">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
+    </style>
+
 </resources>
