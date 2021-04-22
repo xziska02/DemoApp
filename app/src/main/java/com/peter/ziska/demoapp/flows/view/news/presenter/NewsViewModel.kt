@@ -11,6 +11,10 @@ class NewsViewModel @Inject constructor(
     private val fetchNewsUseCase: FetchNews
 ) : ViewModel() {
 
-    suspend fun fetchNews(query: String): Flow<PagingData<Article>>? = fetchNewsUseCase(query)
+    suspend fun fetchNews(query: String? = DEFAULT_SEARCH): Flow<PagingData<Article>>? =
+        fetchNewsUseCase(query ?: DEFAULT_SEARCH)
 
+    companion object {
+        private const val DEFAULT_SEARCH = "android"
+    }
 }

@@ -25,5 +25,6 @@ class MainActivity : BaseActivity<MainViewModel>(R.layout.activity_main) {
         inflater = navHostFragment.navController.navInflater
 
         toolbar.setupWithNavController(navHostFragment.navController, null)
+        toolbar.setTitleTextAppearance(this, R.style.ToolbarTextAppearance)
     }
 }

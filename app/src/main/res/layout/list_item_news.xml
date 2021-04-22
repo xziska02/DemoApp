@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/view_margin_8"
-    android:layout_marginTop="@dimen/view_margin_8"
-    android:layout_marginEnd="@dimen/view_margin_8"
-    android:background="?attr/colorOnSurface"
+    android:layout_marginStart="@dimen/view_margin_12"
+    android:layout_marginTop="@dimen/view_margin_12"
+    android:layout_marginEnd="@dimen/view_margin_12"
+    android:background="?attr/colorSurface"
     app:cardCornerRadius="@dimen/card_corner_radius_8"
     app:layout_constraintTop_toTopOf="parent">
 
@@ -18,12 +18,12 @@
 
         <ImageView
             android:id="@+id/image_view_news"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_size_news_image_view"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
-            android:layout_width="match_parent"
-            tools:src="@drawable/ic_launcher_background"
-            android:layout_height="@dimen/view_size_news_image_view"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_background" />
 
         <TextView
             android:id="@+id/text_view_title"
@@ -54,4 +54,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
