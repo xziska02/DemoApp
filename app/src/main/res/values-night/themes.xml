@@ -2,15 +2,42 @@
     <!-- Base application theme. -->
     <style name="Theme.DemoApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/darkGrey</item>
+        <item name="colorPrimaryVariant">@color/darkGrey</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <item name="colorSurface">@color/darkGrey</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="android:colorBackground">@color/black</item>
+        <item name="android:textColorHint">@color/white</item>
+
+        <item name="fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="BaseText">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="BaseText.Title">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:textSize">@dimen/text_size_18</item>
+    </style>
+
+    <style name="BaseText.Content">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
+    </style>
+
+    <style name="BaseCardView">
+        <item name="cardCornerRadius">@dimen/card_corner_radius_12</item>
+        <item name="cardElevation">0dp</item>
     </style>
 </resources>
