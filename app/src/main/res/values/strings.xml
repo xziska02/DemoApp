@@ -4,4 +4,6 @@
     <string name="lorem_ipsum" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque enim est, semper ut consectetur id, euismod blandit eros. Maecenas a ligula auctor massa feugiat porttitor.</string>
     <string name="search">Search</string>
     <string name="written_by">Written by %s</string>
+    <string name="error_message">Something went wrong.</string>
+    <string name="try_again">Try again</string>
 </resources>

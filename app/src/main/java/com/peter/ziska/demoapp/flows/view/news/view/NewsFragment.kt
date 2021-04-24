@@ -3,6 +3,7 @@ package com.peter.ziska.demoapp.flows.view.news.view
 import android.view.Menu
 import android.view.MenuInflater
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
@@ -15,11 +16,7 @@ import com.peter.ziska.demoapp.flows.view.news.navigation.NewsNavigator
 import com.peter.ziska.demoapp.flows.view.news.presenter.NewsViewModel
 import kotlinx.android.synthetic.main.news_fragment.*
 import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.distinctUntilChangedBy
-import kotlinx.coroutines.flow.filter
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -55,6 +52,10 @@ class NewsFragment : BaseFragment<NewsViewModel>(R.layout.news_fragment),
         swipe_refresh_layout_news.setOnRefreshListener {
             newsAdapter.refresh()
         }
+
+        button_try_again.setOnClickListener {
+            newsAdapter.refresh()
+        }
     }
 
     @OptIn(InternalCoroutinesApi::class)
@@ -63,6 +64,8 @@ class NewsFragment : BaseFragment<NewsViewModel>(R.layout.news_fragment),
         lifecycleScope.launchWhenCreated {
             newsAdapter.loadStateFlow.collectLatest { loadStates ->
                 swipe_refresh_layout_news?.isRefreshing = loadStates.refresh is LoadState.Loading
+                text_view_error.isVisible = (newsAdapter.itemCount == 0) && loadStates.refresh is LoadState.NotLoading
+                button_try_again.isVisible = (newsAdapter.itemCount == 0) && loadStates.refresh is LoadState.NotLoading
             }
         }
 
