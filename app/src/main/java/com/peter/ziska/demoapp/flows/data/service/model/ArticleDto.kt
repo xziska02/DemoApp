@@ -1,4 +1,4 @@
-package com.peter.ziska.demoapp.flows.data.model
+package com.peter.ziska.demoapp.flows.data.service.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

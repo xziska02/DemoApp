@@ -5,6 +5,7 @@ import kotlinx.coroutines.CancellableContinuation
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 import kotlin.coroutines.resume
 
 class RetrofitCallbacks<T, S>(
