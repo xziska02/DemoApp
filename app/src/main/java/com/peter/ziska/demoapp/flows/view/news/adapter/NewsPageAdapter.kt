@@ -7,31 +7,42 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestListener
 import com.peter.ziska.demoapp.R
 import com.peter.ziska.demoapp.extension.inflate
 import com.peter.ziska.demoapp.flows.domain.model.Article
-import kotlinx.android.synthetic.main.list_item_news.view.*
+import com.peter.ziska.demoapp.flows.domain.model.BaseArticle
+import kotlinx.android.synthetic.main.list_item_article.view.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class NewsPageAdapter @Inject constructor(private val context: Context) :
-    PagingDataAdapter<Article, NewsPageAdapter.NewsViewHolder>(NewsComparator) {
+    PagingDataAdapter<BaseArticle, NewsPageAdapter.BaseViewHolder>(ArticleComparator) {
 
     lateinit var onClick: (Article) -> Unit
 
-    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder =
-        NewsViewHolder(parent.inflate(R.layout.list_item_news))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder =
+        when (viewType) {
+            BaseArticle.ArticleType.BASIC_ARTICLE -> BasicArticleViewHolder((parent.inflate(R.layout.list_item_article)))
+            BaseArticle.ArticleType.GAME_ARTICLE -> BasicArticleViewHolder((parent.inflate(R.layout.list_item_article)))
+            else -> BasicArticleViewHolder(parent.inflate(R.layout.list_item_article))
+        }
 
-    inner class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    override fun getItemViewType(position: Int): Int =
+        getItem(position)?.type ?: BaseArticle.ArticleType.BASIC_ARTICLE
 
-        fun bind(article: Article?) {
-            article?.run {
+    abstract class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        abstract fun bind(item: BaseArticle?)
+    }
+
+    inner class BasicArticleViewHolder(itemView: View) : BaseViewHolder(itemView) {
+
+        override fun bind(item: BaseArticle?) {
+            (item as? Article)?.run {
                 itemView.setOnClickListener { onClick(this) }
                 itemView.text_view_title.text = title
                 itemView.text_view_description.text = content
@@ -40,12 +51,24 @@ class NewsPageAdapter @Inject constructor(private val context: Context) :
         }
     }
 
-    object NewsComparator : DiffUtil.ItemCallback<Article>() {
-        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean =
+    //TODO add different type of object to recyclerview
+    inner class GameArticleViewHolder(itemView: View) : BaseViewHolder(itemView) {
+
+        override fun bind(item: BaseArticle?) {
+            (item as Article).run {
+                itemView.setOnClickListener { onClick(this) }
+                itemView.text_view_title.text = title
+                itemView.text_view_description.text = content
+                Glide.with(context).load(urlToImage).into(itemView.image_view_news)
+            }
+        }
+    }
+
+    object ArticleComparator : DiffUtil.ItemCallback<BaseArticle>() {
+        override fun areItemsTheSame(oldItem: BaseArticle, newItem: BaseArticle): Boolean =
             oldItem == newItem
 
-        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean =
+        override fun areContentsTheSame(oldItem: BaseArticle, newItem: BaseArticle): Boolean =
             oldItem.id == newItem.id
-
     }
 }

@@ -15,7 +15,7 @@
             android:id="@+id/recycler_view_news"
             android:layout_width="match_parent"
             android:clipChildren="false"
-            tools:listitem="@layout/list_item_news"
+            tools:listitem="@layout/list_item_article"
             android:layout_height="match_parent" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
