@@ -53,7 +53,5 @@ class NetworkModule {
     @Provides
     fun provideNewsApi(
         retrofit: Retrofit,
-        @Named("DateFormat") dateFormat: SimpleDateFormat,
-    ): NewsApi = NewsApiImpl(retrofit, dateFormat)
-
+    ): NewsApi = NewsApiImpl(retrofit)
 }
