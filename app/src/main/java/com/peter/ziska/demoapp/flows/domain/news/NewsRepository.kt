@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface NewsRepository {
 
-    suspend fun getNews(query: String): Flow<PagingData<Article>>
+    fun getNews(query: String): Flow<PagingData<Article>>
 }

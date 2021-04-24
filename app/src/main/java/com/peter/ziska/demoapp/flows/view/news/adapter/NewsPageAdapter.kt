@@ -1,6 +1,5 @@
 package com.peter.ziska.demoapp.flows.view.news.adapter
 
-import android.app.Application
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +7,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestListener
 import com.peter.ziska.demoapp.R
 import com.peter.ziska.demoapp.extension.inflate
 import com.peter.ziska.demoapp.flows.domain.model.Article
@@ -34,18 +34,18 @@ class NewsPageAdapter @Inject constructor(private val context: Context) :
             article?.run {
                 itemView.setOnClickListener { onClick(this) }
                 itemView.text_view_title.text = title
-                itemView.text_view_description.text = description
-                Glide.with(context).load(this.urlToImage).into(itemView.image_view_news)
+                itemView.text_view_description.text = content
+                Glide.with(context).load(urlToImage).into(itemView.image_view_news)
             }
         }
     }
 
     object NewsComparator : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean =
-            oldItem === newItem
+            oldItem == newItem
 
         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean =
-            oldItem == newItem
+            oldItem.id == newItem.id
 
     }
 }

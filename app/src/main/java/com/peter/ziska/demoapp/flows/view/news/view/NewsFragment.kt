@@ -14,8 +14,12 @@ import com.peter.ziska.demoapp.flows.view.news.adapter.NewsPageAdapter
 import com.peter.ziska.demoapp.flows.view.news.navigation.NewsNavigator
 import com.peter.ziska.demoapp.flows.view.news.presenter.NewsViewModel
 import kotlinx.android.synthetic.main.news_fragment.*
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.filter
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -47,21 +51,23 @@ class NewsFragment : BaseFragment<NewsViewModel>(R.layout.news_fragment),
             layoutManager = LinearLayoutManager(requireContext())
             adapter = newsAdapter
         }
+
+        swipe_refresh_layout_news.setOnRefreshListener {
+            newsAdapter.refresh()
+        }
     }
 
+    @OptIn(InternalCoroutinesApi::class)
     override fun onSubscribe() {
         super.onSubscribe()
-
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenCreated {
             newsAdapter.loadStateFlow.collectLatest { loadStates ->
                 swipe_refresh_layout_news?.isRefreshing = loadStates.refresh is LoadState.Loading
             }
         }
-    }
 
-    private fun fetchNews(query: String?) {
-        lifecycleScope.launch {
-            viewModel.fetchNews(query)?.collectLatest {
+        viewModel.articles.observe(viewLifecycleOwner) {
+            lifecycleScope.launchWhenCreated {
                 newsAdapter.submitData(it)
             }
         }
@@ -77,7 +83,8 @@ class NewsFragment : BaseFragment<NewsViewModel>(R.layout.news_fragment),
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        fetchNews(query)
+        viewModel.fetch(query)
+        newsAdapter.refresh()
         requireContext().hideKeyboard(searchView)
         return true
     }

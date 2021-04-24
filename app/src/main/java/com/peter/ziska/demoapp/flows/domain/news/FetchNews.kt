@@ -11,6 +11,6 @@ class FetchNews @Inject constructor(
     private val newsRepository: NewsRepository,
 ) : BaseParameterUseCase<String, Flow<PagingData<Article>>>() {
 
-    override suspend fun run(input: String): Flow<PagingData<Article>> =
+    override fun run(input: String): Flow<PagingData<Article>> =
         newsRepository.getNews(input)
 }
