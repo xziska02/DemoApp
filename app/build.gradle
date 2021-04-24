@@ -21,8 +21,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField 'String', 'NEWS_SERVER_URL', '"https://newsapi.org/v2/"'
-        buildConfigField 'String', 'NEWS_API_KEY', '"fca4d69d8fe94c4a82d17ae10cee5a0b"'
+        buildConfigField 'String', 'NEWS_SERVER_URL', '"https://free-news.p.rapidapi.com/v1/"'
+        buildConfigField 'String', 'NEWS_API_KEY', '"5d69b16442msh619c38e2bf1c374p1fcd30jsn222955f1f71b"'
+        buildConfigField 'String', 'NEWS_HOST', '"free-news.p.rapidapi.com"'
     }
 
     buildTypes {
@@ -91,6 +92,11 @@ dependencies {
 
     implementation "androidx.paging:paging-runtime:$libVersions.paging_version"
 
+    api "androidx.room:room-runtime:$libVersions.room"
+    kapt "androidx.room:room-compiler:$libVersions.room"
+
+    // Kotlin Extensions and Coroutines support for Room
+    api "androidx.room:room-ktx:$libVersions.room"
     // logging
     api "com.jakewharton.timber:timber:$libVersions.timber"
 

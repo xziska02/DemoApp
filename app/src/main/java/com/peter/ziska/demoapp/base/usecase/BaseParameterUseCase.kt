@@ -1,26 +1,13 @@
 package com.peter.ziska.demoapp.base.usecase
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
 
-abstract class BaseParameterUseCase<in I, out O>(
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
-) {
+abstract class BaseParameterUseCase<in I, out O>() {
+    abstract fun run(input: I): O
 
-    private lateinit var job: Job
-
-    abstract suspend fun run(input: I): O
-
-    suspend operator fun invoke(input: I) = run(input)
+    operator fun invoke(input: I) = run(input)
 
     operator fun invoke(scope: CoroutineScope, input: I, response: (O) -> Unit) {
-        job = scope.launch {
-            response(withContext(dispatcher) { run(input) })
-        }
-    }
-
-    fun cancel() {
-        if (::job.isInitialized) {
-            job.cancel()
-        }
+        response(run(input))
     }
 }
