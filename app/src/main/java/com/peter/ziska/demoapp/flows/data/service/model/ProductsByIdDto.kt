@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ProductsByIdDto (
 	@SerialName("vpProductByIds")
-	val products : List<ProductDto>
+	val products : List<ProductDto> = emptyList()
 )

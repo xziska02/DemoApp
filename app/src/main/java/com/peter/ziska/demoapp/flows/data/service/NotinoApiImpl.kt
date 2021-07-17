@@ -13,7 +13,7 @@ class NotinoApiImpl @Inject constructor(
 
     private val service by lazy { retrofit.create(NotinoService::class.java) }
 
-    override suspend fun getProducts(timeoutInMillis: Long): Either<RestResult, ProductsByIdDto> =
+    override suspend fun getProducts(timeoutInMillis: Long): Either<RestError, ProductsByIdDto> =
         tryRequest {
             withTimeout(timeoutInMillis) {
                 suspendCancellableCoroutine { continuation ->

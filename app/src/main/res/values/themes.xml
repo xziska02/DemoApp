@@ -27,28 +27,45 @@
     <style name="BaseText.Title">
         <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/poppins_bold</item>
-        <item name="android:textSize">@dimen/text_size_24</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+
+    <style name="BaseText.Title.Grey">
+        <item name="android:textColor">@color/darkGrey</item>
+        <item name="android:fontFamily">@font/poppins_light</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
     </style>
 
     <style name="BaseText.Content">
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/darkGrey</item>
         <item name="android:fontFamily">@font/poppins_regular</item>
-        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textSize">@dimen/text_size_10</item>
     </style>
 
     <style name="BaseText.Subtitle">
         <item name="android:textColor">@color/darkGrey</item>
         <item name="android:fontFamily">@font/poppins_lightitalic</item>
-        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
     </style>
 
-    <style name="ToolbarTextAppearance">
+    <style name="ToolbarTextAppearance" parent="BaseText">
         <item name="android:fontFamily">@font/poppins_bold</item>
     </style>
 
-    <style name="BaseCardView">
-        <item name="cardCornerRadius">@dimen/card_corner_radius_12</item>
-        <item name="cardElevation">8dp</item>
+    <style name="OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="cornerRadius">@dimen/card_corner_radius_0</item>
+        <item name="android:fontFamily">@font/poppins_lightitalic</item>
+        <item name="android:textColor">@color/notino_gray_d1</item>
+        <item name="strokeColor">@color/notino_gray_d1</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
     </style>
 
+    <style name="CustomRatingBarStyle" parent="Widget.AppCompat.RatingBar.Small">
+        <item name="android:progressBackgroundTint">@color/darkGrey</item>
+        <item name="android:progressTint">@color/notino_pink</item>
+    </style>
+
+    <style name="HearthRadioButton" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/like_radio_button</item>
+    </style>
 </resources>

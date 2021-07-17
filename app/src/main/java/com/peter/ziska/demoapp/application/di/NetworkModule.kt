@@ -2,8 +2,8 @@ package com.peter.ziska.demoapp.application.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.peter.ziska.demoapp.BuildConfig
-import com.peter.ziska.demoapp.flows.data.service.NewsApi
-import com.peter.ziska.demoapp.flows.data.service.NewsApiImpl
+import com.peter.ziska.demoapp.flows.data.service.NotinoApi
+import com.peter.ziska.demoapp.flows.data.service.NotinoApiImpl
 import dagger.Module
 import dagger.Provides
 import kotlinx.serialization.json.Json
@@ -11,8 +11,6 @@ import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import java.text.SimpleDateFormat
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -44,14 +42,14 @@ class NetworkModule {
     @Provides
     fun provideRetrofit(client: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl(BuildConfig.NEWS_SERVER_URL)
+            .baseUrl(BuildConfig.SERVER_URL)
             .client(client)
             .addConverterFactory(Json.asConverterFactory(MediaType.get("application/json")))
             .build()
 
     @Singleton
     @Provides
-    fun provideNewsApi(
+    fun provideNotinoApi(
         retrofit: Retrofit,
-    ): NewsApi = NewsApiImpl(retrofit)
+    ): NotinoApi = NotinoApiImpl(retrofit)
 }

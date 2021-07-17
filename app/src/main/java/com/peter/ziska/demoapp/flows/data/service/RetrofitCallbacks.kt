@@ -5,16 +5,15 @@ import kotlinx.coroutines.CancellableContinuation
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import timber.log.Timber
 import kotlin.coroutines.resume
 
 class RetrofitCallbacks<T, S>(
-    private val continuation: CancellableContinuation<Either<RestResult, T>>,
-    private val onResponse: (S) -> Either<RestResult, T>
+    private val continuation: CancellableContinuation<Either<RestError, T>>,
+    private val onResponse: (S) -> Either<RestError, T>
 ) : Callback<S> {
     override fun onFailure(call: Call<S>, t: Throwable) {
         t.printStackTrace()
-        continuation.resume(Either.Left(RestResult.Error("Error: $t")))
+        continuation.resume(Either.Left(RestError.Error("Error: $t")))
     }
 
     override fun onResponse(
@@ -23,6 +22,6 @@ class RetrofitCallbacks<T, S>(
     ) {
         response.body()?.let {
             continuation.resume(onResponse(it))
-        } ?: continuation.resume(Either.Left(RestResult.Error("Null body")))
+        } ?: continuation.resume(Either.Left(RestError.Error("Null body")))
     }
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:height="24dp" android:width="24dp" android:drawable="@drawable/ic_heart_empty" android:state_checked="false" />
+    <item android:height="24dp" android:width="24dp" android:drawable="@drawable/ic_heart_fill" android:state_checked="true" />
+    <item android:height="24dp" android:width="24dp" android:drawable="@drawable/ic_heart_empty" android:state_selected="false" />
+    <item android:height="24dp" android:width="24dp" android:drawable="@drawable/ic_heart_fill" android:state_selected="true" />
+</selector>

@@ -8,6 +8,7 @@ import com.peter.ziska.demoapp.flows.view.main.presenter.MainViewModel
 import com.peter.ziska.demoapp.R
 import com.peter.ziska.demoapp.base.view.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainActivity : BaseActivity<MainViewModel>(R.layout.activity_main) {
 
@@ -26,5 +27,6 @@ class MainActivity : BaseActivity<MainViewModel>(R.layout.activity_main) {
 
         toolbar.setupWithNavController(navHostFragment.navController, null)
         toolbar.setTitleTextAppearance(this, R.style.ToolbarTextAppearance)
+        toolbar.isTitleCentered = true
     }
 }

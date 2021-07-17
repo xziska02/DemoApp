@@ -2,7 +2,7 @@ package com.peter.ziska.demoapp.application.di
 
 import android.content.Context
 import androidx.room.Room
-import com.peter.ziska.demoapp.flows.data.persistance.NewsDatabase
+import com.peter.ziska.demoapp.flows.data.persistance.ProductDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -12,15 +12,10 @@ class StorageModule {
 
     @Singleton
     @Provides
-    fun provideDatabase(context: Context): NewsDatabase =
-        Room.databaseBuilder(context, NewsDatabase::class.java, "news_db").build()
+    fun provideDatabase(context: Context): ProductDatabase =
+        Room.databaseBuilder(context, ProductDatabase::class.java, "products_db").build()
 
     @Singleton
     @Provides
-    fun provideNewsDao(newsDatabase: NewsDatabase) = newsDatabase.newsDao()
-
-    @Singleton
-    @Provides
-    fun provideRemoteKeyDao(newsDatabase: NewsDatabase) = newsDatabase.remoteKeyDao()
-
+    fun provideProductsDao(productDatabase: ProductDatabase) = productDatabase.productDao()
 }

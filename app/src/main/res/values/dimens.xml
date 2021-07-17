@@ -36,6 +36,8 @@
     <dimen name="view_margin_48">48dp</dimen>
 
     <!-- Corners -->
+    <dimen name="card_corner_radius_0">0dp</dimen>
+    <dimen name="card_corner_radius_2">2dp</dimen>
     <dimen name="card_corner_radius_4">4dp</dimen>
     <dimen name="card_corner_radius_8">8dp</dimen>
     <dimen name="card_corner_radius_12">12dp</dimen>
@@ -43,6 +45,7 @@
     <dimen name="card_corner_radius_24">24dp</dimen>
 
     <!-- Text -->
+    <dimen name="text_size_10">10sp</dimen>
     <dimen name="text_size_12">12sp</dimen>
     <dimen name="text_size_14">14sp</dimen>
     <dimen name="text_size_16">16sp</dimen>
@@ -55,6 +58,5 @@
     <dimen name="text_size_40">40sp</dimen>
     <dimen name="text_size_48">48sp</dimen>
 
-    <dimen name="view_size_news_image_view">170dp</dimen>
-    <dimen name="view_size_news_card_view">250dp</dimen>
+    <dimen name="view_size_product_image_view">150dp</dimen>
 </resources>

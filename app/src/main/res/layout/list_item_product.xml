@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="370dp"
+    android:layout_margin="@dimen/view_margin_4"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/image_view_product"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_size_product_image_view"
+            android:layout_marginTop="@dimen/view_margin_16"
+            android:adjustViewBounds="true"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <ImageButton
+            android:id="@+id/button_like_product"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="@dimen/view_margin_12"
+            android:layout_marginStart="7dp"
+            android:layout_weight=".3"
+            android:background="@null"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/like_radio_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_view_manufacturer"
+            style="@style/BaseText.Title.Grey"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_margin_8"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:textColor="@color/darkGrey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_view_product"
+            tools:text="LÓreal Professionnel" />
+
+        <TextView
+            android:id="@+id/text_view_title"
+            style="@style/BaseText.Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_manufacturer"
+            tools:text="Homme 5 Force Clay" />
+
+
+        <TextView
+            android:id="@+id/text_view_description"
+            style="@style/BaseText.Content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/view_margin_8"
+            android:layout_marginEnd="@dimen/view_margin_8"
+            android:layout_marginBottom="@dimen/view_margin_8"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:textColor="@color/darkGrey"
+            app:layout_constraintTop_toBottomOf="@id/text_view_title"
+            tools:text="@string/lorem_ipsum" />
+
+        <TextView
+            android:id="@+id/text_view_amount"
+            style="@style/BaseText.Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_margin_8"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rating_bar"
+            tools:text="5 KČ" />
+
+        <RatingBar
+            android:id="@+id/rating_bar"
+            android:layout_width="wrap_content"
+            style="@style/CustomRatingBarStyle"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_margin_8"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_description" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_add_basket"
+            style="@style/OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_margin_4"
+            android:text="@string/add_to_basket"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_amount" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

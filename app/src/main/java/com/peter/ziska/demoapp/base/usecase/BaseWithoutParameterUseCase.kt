@@ -8,9 +8,9 @@ abstract class BaseWithoutParameterUseCase<out O>(
 
     private lateinit var job: Job
 
-    abstract suspend fun run(): O
+    abstract fun run(): O
 
-    suspend operator fun invoke() = run()
+    operator fun invoke() = run()
 
     operator fun invoke(scope: CoroutineScope, response: (O) -> Unit) {
         job = scope.launch {

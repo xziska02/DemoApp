@@ -2,9 +2,11 @@ package com.peter.ziska.demoapp.flows.service
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.peter.ziska.demoapp.base.either.Either
+import com.peter.ziska.demoapp.base.either.withLeft
 import com.peter.ziska.demoapp.base.either.withRight
 import com.peter.ziska.demoapp.flows.data.service.NotinoApi
 import com.peter.ziska.demoapp.flows.data.service.NotinoApiImpl
+import com.peter.ziska.demoapp.flows.data.service.RestError
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -55,7 +57,6 @@ class NotinoApiTest {
                     it.attributes.ean `should be equal to` "3474630287273"
                 }
             }
-
         }
     }
 
@@ -78,6 +79,28 @@ class NotinoApiTest {
         }
     }
 
+    @Test
+    fun `should return empty array`() {
+
+        mockWebServer.dispatcher = object : Dispatcher() {
+            override fun dispatch(request: RecordedRequest) =
+                MockResponse()
+                    .setResponseCode(200)
+                    .addHeader("Content-Type", "application/json; charset=utf-8")
+                    .setBody("{}")
+        }
+
+        val uut: NotinoApi = NotinoApiImpl(retrofit)
+
+        runBlocking {
+            val products = uut.getProducts()
+
+            products `should be instance of` Either.Right::class
+            products.withRight {
+                it.products.count() `should be equal to` 0
+            }
+        }
+    }
 
     val successResponse = """{
         "vpProductByIds": [

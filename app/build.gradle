@@ -14,16 +14,14 @@ android {
     defaultConfig {
         multiDexEnabled true
         applicationId "com.peter.ziska.demoapp"
-        minSdkVersion 19
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField 'String', 'NEWS_SERVER_URL', '"https://free-news.p.rapidapi.com/v1/"'
-        buildConfigField 'String', 'NEWS_API_KEY', '"5d69b16442msh619c38e2bf1c374p1fcd30jsn222955f1f71b"'
-        buildConfigField 'String', 'NEWS_HOST', '"free-news.p.rapidapi.com"'
+        buildConfigField 'String', 'SERVER_URL', '"https://my-json-server.typicode.com/"'
     }
 
     buildTypes {
@@ -113,4 +111,5 @@ dependencies {
     testImplementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$libVersions.kotlin"
     testImplementation "org.jetbrains.kotlin:kotlin-reflect:$libVersions.kotlin"
     testImplementation "org.jetbrains.kotlin:kotlin-test:$libVersions.kotlin"
+    testImplementation "com.squareup.okhttp3:mockwebserver:4.7.2"
 }
